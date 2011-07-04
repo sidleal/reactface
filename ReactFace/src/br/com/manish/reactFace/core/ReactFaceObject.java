@@ -18,6 +18,7 @@ package br.com.manish.reactFace.core;
 
 public interface ReactFaceObject {
 	void move(Double x, Double y);
+	void rotate(Double angle);
 	void show();
 	void hide();
 }

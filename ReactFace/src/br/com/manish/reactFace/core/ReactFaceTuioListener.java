@@ -58,6 +58,7 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 		ReactFaceObject obj = getObject(to.getSymbolID());
 		if (obj != null) {
 			obj.move(convertPointX(to.getX()), convertPointY(to.getY()));
+			obj.rotate(convertAngle(to.getAngle()));
 		}
 	}
 	
@@ -67,6 +68,10 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 
 	private Double convertPointY(Float y) {
 		return sceneHeight * y;
+	}
+
+	private Double convertAngle(Float angle) {
+		return 360 - (60.0 * angle);
 	}
 
 	@Override
