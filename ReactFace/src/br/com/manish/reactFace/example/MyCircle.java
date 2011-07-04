@@ -16,25 +16,28 @@
 
 package br.com.manish.reactFace.example;
 
-import br.com.manish.reactFace.core.ReactFaceObject;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
+import br.com.manish.reactFace.core.ReactFaceObject;
 
 public class MyCircle extends Circle implements ReactFaceObject {
 	private static final Double radius = 60.0;
 	
-	public MyCircle () {
+	public MyCircle (Color color) {
         super(80,80,radius);
         RadialGradient gradient = new RadialGradient(0, 0, 0.4, 0.4, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-            new Stop(0, Color.DODGERBLUE),
+            new Stop(0, color),
             new Stop(1, Color.BLACK)
         });
-        setStroke(Color.DODGERBLUE);
+        setStroke(color);
         setFill(gradient);
         setVisible(false);
+	}
+	public MyCircle() {
+		this(Color.DODGERBLUE);
 	}
 
 	@Override
