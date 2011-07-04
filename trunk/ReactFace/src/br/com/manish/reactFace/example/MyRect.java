@@ -18,17 +18,16 @@ package br.com.manish.reactFace.example;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import br.com.manish.reactFace.core.ReactFaceObject;
 
-public class MyCircle extends Circle implements ReactFaceObject {
-	private static final Double radius = 60.0;
+public class MyRect extends Rectangle implements ReactFaceObject {
 	
-	public MyCircle (Color color) {
-        super(80,80,radius);
-        RadialGradient gradient = new RadialGradient(0, 0, 0.4, 0.4, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
+	public MyRect (Color color) {
+        super(100, 100, 30, 200);
+        LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, new Stop[] {
             new Stop(0, color),
             new Stop(1, Color.BLACK)
         });
@@ -36,14 +35,14 @@ public class MyCircle extends Circle implements ReactFaceObject {
         setFill(gradient);
         setVisible(false);
 	}
-	public MyCircle() {
+	public MyRect() {
 		this(Color.DODGERBLUE);
 	}
 
 	@Override
 	public void move(Double x, Double y) {
-		setTranslateX(x - (radius/2));
-		setTranslateY(y - (radius/2));		
+		setTranslateX(x);
+		setTranslateY(y);		
 	}
 
 	@Override
@@ -58,6 +57,6 @@ public class MyCircle extends Circle implements ReactFaceObject {
 	
 	@Override
 	public void rotate(Double angle) {
+		setRotate(angle);
 	}
-	
 }
