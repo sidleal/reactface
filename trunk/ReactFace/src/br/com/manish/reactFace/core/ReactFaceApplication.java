@@ -23,12 +23,14 @@ import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import TUIO.TuioClient;
 
 public abstract class ReactFaceApplication extends Application {
     private Double width = 800.0;
     private Double height = 600.0;
+    private Color backgroundColor = Color.WHITE;
 	private TuioClient tuio;
 	private Stage stage;
 	private Group root = new Group();
@@ -52,6 +54,7 @@ public abstract class ReactFaceApplication extends Application {
         stage.setResizable(false);
 
 		scene = new Scene(root, width, height);
+		scene.setFill(backgroundColor);
         stage.setScene(scene);
         stage.setVisible(true);
         
@@ -137,6 +140,14 @@ public abstract class ReactFaceApplication extends Application {
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
+	}
+
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(Color backgroundColor) {
+		this.backgroundColor = backgroundColor;
 	}
 	
 }
