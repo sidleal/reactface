@@ -41,7 +41,7 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 	public void addTuioObject(TuioObject to) {
 		ReactFaceObject obj = getObject(to.getSymbolID());
 		if (obj != null) {
-			obj.show();
+			obj.show(convertPointX(to.getX()), convertPointY(to.getY()), convertAngle(to.getAngle()));
 		}
 	}
 
