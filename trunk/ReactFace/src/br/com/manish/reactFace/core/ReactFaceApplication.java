@@ -149,5 +149,17 @@ public abstract class ReactFaceApplication extends Application {
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
+
+	@Override
+	public void stop() throws Exception {
+		System.out.println("stopped");
+	}
+
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("destroyed");
+	}
 	
+	
+
 }

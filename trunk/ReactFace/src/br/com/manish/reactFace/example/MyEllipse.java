@@ -31,7 +31,7 @@ public class MyEllipse extends Ellipse implements ReactFaceObject{
 	}
 
 	@Override
-	public void show() {
+	public void show(Double x, Double y, Double angle) {
 		setVisible(true);
 	}
 
