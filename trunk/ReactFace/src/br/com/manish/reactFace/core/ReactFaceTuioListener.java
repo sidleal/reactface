@@ -15,7 +15,11 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package br.com.manish.reactFace.core;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import TUIO.TuioCursor;
 import TUIO.TuioObject;
@@ -24,6 +28,8 @@ import TUIO.TuioTime;
 public class ReactFaceTuioListener implements TUIO.TuioListener {
 
 	private Map<Integer, ReactFaceObject> objectMap;
+	private Set<Integer> activeFiducialsMap = new HashSet<Integer>();
+	
 	private Double sceneWidth;
 	private Double sceneHeight;
 	 
@@ -34,7 +40,19 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 	}
 	
 	private ReactFaceObject getObject(Integer id) {
-		return objectMap.get(id);
+		ReactFaceObject ret = objectMap.get(id);
+		
+		if (ret == null) {
+			NumberFormat nf = new DecimalFormat("000");
+			for (Integer activeId : activeFiducialsMap) {
+				Integer idDep = new Integer(String.valueOf(id) + nf.format(activeId));
+				if (objectMap.containsKey(idDep)) {
+					ret = objectMap.get(idDep);
+					break;
+				}
+			}
+		}
+		return ret;
 	}
 	
 	@Override
@@ -42,6 +60,7 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 		ReactFaceObject obj = getObject(to.getSymbolID());
 		if (obj != null) {
 			obj.show(convertPointX(to.getX()), convertPointY(to.getY()), convertAngle(to.getAngle()));
+			activeFiducialsMap.add(to.getSymbolID());
 		}
 	}
 
@@ -50,6 +69,7 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 		ReactFaceObject obj = getObject(to.getSymbolID());
 		if (obj != null) {
 			obj.hide();
+			activeFiducialsMap.remove(to.getSymbolID());
 		}
 	}
 
