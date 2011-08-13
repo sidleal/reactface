@@ -15,8 +15,12 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 package br.com.manish.reactFace.core;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -35,10 +39,11 @@ public abstract class ReactFaceApplication extends Application {
 	private Stage stage;
 	private Group root = new Group();
 	private Scene scene;
+	private Boolean fullScreen = false;
 
 	/**A map to hold the fiducials id's and javafx equivalent objects.*/
 	private Map<Integer, ReactFaceObject> objectMap = new HashMap<Integer, ReactFaceObject>();
-	
+
 	public ReactFaceApplication() {
 		super();
 	}
@@ -57,6 +62,7 @@ public abstract class ReactFaceApplication extends Application {
 		scene.setFill(backgroundColor);
         stage.setScene(scene);
         stage.setVisible(true);
+        stage.setFullScreen(fullScreen);
         
         //Creating a new TuioClient
         tuio = new TuioClient();
@@ -74,6 +80,12 @@ public abstract class ReactFaceApplication extends Application {
 		putObjectOnMap(id, (ReactFaceObject) obj);
 	}
 	
+	protected void addConditionalObject(Integer id, Integer dependency, Node obj) {
+		NumberFormat nf = new DecimalFormat("000");
+		Integer codedId = new Integer(String.valueOf(id) + nf.format(dependency));
+		addObject(codedId, obj);
+	}
+
 	public void setTitle(String title) {
 		stage.setTitle(title);
 	}
@@ -148,6 +160,14 @@ public abstract class ReactFaceApplication extends Application {
 
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
+	}
+
+	public Boolean getFullScreen() {
+		return fullScreen;
+	}
+
+	public void setFullScreen(Boolean fullScreen) {
+		this.fullScreen = fullScreen;
 	}
 
 	@Override
