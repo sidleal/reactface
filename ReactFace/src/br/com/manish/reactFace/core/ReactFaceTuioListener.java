@@ -26,6 +26,7 @@ import TUIO.TuioObject;
 import TUIO.TuioTime;
 
 public class ReactFaceTuioListener implements TUIO.TuioListener {
+	NumberFormat nf = new DecimalFormat("000");
 
 	private Map<Integer, ReactFaceObject> objectMap;
 	private Set<Integer> activeFiducialsMap = new HashSet<Integer>();
@@ -43,9 +44,8 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 		ReactFaceObject ret = objectMap.get(id);
 		
 		if (ret == null) {
-			NumberFormat nf = new DecimalFormat("000");
 			for (Integer activeId : activeFiducialsMap) {
-				Integer idDep = new Integer(String.valueOf(id) + nf.format(activeId));
+				Integer idDep = new Integer(String.valueOf(activeId) + nf.format(id));
 				if (objectMap.containsKey(idDep)) {
 					ret = objectMap.get(idDep);
 					break;
@@ -70,6 +70,18 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 		if (obj != null) {
 			obj.hide();
 			activeFiducialsMap.remove(to.getSymbolID());
+			
+			//TODO: removing dependency object.. to improve latter.
+			for (Integer activeId : activeFiducialsMap) {
+				Integer idDep = new Integer(String.valueOf(to.getSymbolID()) + nf.format(activeId));
+				if (objectMap.containsKey(idDep)) {
+					ReactFaceObject depObj = getObject(idDep);
+					depObj.hide();
+					activeFiducialsMap.remove(activeId);
+					break;
+				}
+			}
+
 		}
 	}
 

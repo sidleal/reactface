@@ -82,7 +82,7 @@ public abstract class ReactFaceApplication extends Application {
 	
 	protected void addConditionalObject(Integer id, Integer dependency, Node obj) {
 		NumberFormat nf = new DecimalFormat("000");
-		Integer codedId = new Integer(String.valueOf(id) + nf.format(dependency));
+		Integer codedId = new Integer(String.valueOf(dependency) + nf.format(id));
 		addObject(codedId, obj);
 	}
 
