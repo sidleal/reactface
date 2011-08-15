@@ -21,4 +21,7 @@ public interface ReactFaceObject {
 	void rotate(Double angle);
 	void show(Double x, Double y, Double angle);
 	void hide();
+	void setDependency(ReactFaceObject obj);
+	void stopMusic();
+	void startMusic();
 }

@@ -48,6 +48,7 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 				Integer idDep = new Integer(String.valueOf(activeId) + nf.format(id));
 				if (objectMap.containsKey(idDep)) {
 					ret = objectMap.get(idDep);
+					ret.setDependency(objectMap.get(activeId));
 					break;
 				}
 			}
@@ -77,6 +78,7 @@ public class ReactFaceTuioListener implements TUIO.TuioListener {
 				if (objectMap.containsKey(idDep)) {
 					ReactFaceObject depObj = getObject(idDep);
 					depObj.hide();
+					depObj.stopMusic();
 					activeFiducialsMap.remove(activeId);
 					break;
 				}
