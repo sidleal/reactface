@@ -59,5 +59,15 @@ public class MyCircle extends Circle implements ReactFaceObject {
 	@Override
 	public void rotate(Double angle) {
 	}
+
+	@Override
+	public void setDependency(ReactFaceObject obj) {
+	}
+	@Override
+	public void stopMusic() {
+	}
+	@Override
+	public void startMusic() {
+	}
 	
 }

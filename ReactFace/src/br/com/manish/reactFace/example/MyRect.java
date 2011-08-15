@@ -59,4 +59,14 @@ public class MyRect extends Rectangle implements ReactFaceObject {
 	public void rotate(Double angle) {
 		setRotate(angle);
 	}
+	@Override
+	public void setDependency(ReactFaceObject obj) {
+	}
+	@Override
+	public void stopMusic() {
+	}
+	@Override
+	public void startMusic() {
+	}
+	
 }
