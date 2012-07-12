@@ -27,14 +27,14 @@ public class EllipseTest extends ReactFaceApplication {
         MyEllipse red = new MyEllipse(Color.RED); //Creating a second object
         addObject(41, red); //Adding on group root and putting on fiducials map
         
-        scaleTransition = new ScaleTransition(Duration.valueOf(4000), blue);
+        scaleTransition = new ScaleTransition(Duration.valueOf("4s"), blue);
         scaleTransition.setToX(3.0f);
         scaleTransition.setToY(3.0f);
         scaleTransition.setCycleCount(Timeline.INDEFINITE);
         scaleTransition.setAutoReverse(true);
         scaleTransition.play();
         
-        fadeTransition = new FadeTransition(Duration.valueOf(500), red);
+        fadeTransition = new FadeTransition(Duration.valueOf("500ms"), red);
         fadeTransition.setFromValue(1.0f);
         fadeTransition.setToValue(0.2f);
         fadeTransition.setCycleCount(Timeline.INDEFINITE);
