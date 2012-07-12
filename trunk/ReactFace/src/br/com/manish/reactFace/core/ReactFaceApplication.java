@@ -61,7 +61,6 @@ public abstract class ReactFaceApplication extends Application {
 		scene = new Scene(root, width, height);
 		scene.setFill(backgroundColor);
         stage.setScene(scene);
-        stage.setVisible(true);
         stage.setFullScreen(fullScreen);
         
         //Creating a new TuioClient
@@ -175,7 +174,7 @@ public abstract class ReactFaceApplication extends Application {
 		System.out.println("stopped");
 	}
 
-	@Override
+	
 	public void destroy() throws Exception {
 		System.out.println("destroyed");
 	}
