@@ -63,6 +63,8 @@ public abstract class ReactFaceApplication extends Application {
         stage.setScene(scene);
         stage.setFullScreen(fullScreen);
         
+	    stage.show();
+        
         //Creating a new TuioClient
         tuio = new TuioClient();
         
